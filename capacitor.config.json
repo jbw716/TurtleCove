@@ -1,0 +1,7 @@
+{
+  "appId": "com.selu.turtlecove",
+  "appName": "Turtle Cove",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

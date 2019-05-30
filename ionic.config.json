@@ -1,0 +1,7 @@
+{
+  "name": "Turtle Cove",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
