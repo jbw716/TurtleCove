@@ -17,15 +17,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: "info",
-        children: [
-          {
-            path: "",
-            loadChildren: () => import('./pages/info/info.module').then(m => m.InfoPageModule)
-          }
-        ]
-      },
-      {
         path: "gw-tour",
         children: [
           {
@@ -64,11 +55,8 @@ const routes: Routes = [
     redirectTo: "/tabs/home",
     pathMatch: "full"
   },
-  { path: "home", loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
-  { path: "info", loadChildren: () => import('./pages/info/info.module').then(m => m.InfoPageModule) },
-  { path: 'tc-tour', loadChildren: './pages/tc-tour/tc-tour.module#TcTourPageModule' },
-  { path: 'gw-tour', loadChildren: './pages/gw-tour/gw-tour.module#GwTourPageModule' },
-  { path: 'checklist', loadChildren: './pages/checklist/checklist.module#ChecklistPageModule' },
+  { path: 'info', loadChildren: './pages/info/info.module#InfoPageModule' },
+  { path: 'events', loadChildren: './pages/events/events.module#EventsPageModule' },
 ];
 @NgModule({
   imports: [
