@@ -44,6 +44,33 @@ const routes: Routes = [
         ]
       },
       {
+        path: "gw-tour",
+        children: [
+          {
+            path: "",
+            loadChildren: () => import('./pages/gw-tour/gw-tour.module').then(m => m.GwTourPageModule)
+          }
+        ]
+      },
+      {
+        path: "checklist",
+        children: [
+          {
+            path: "",
+            loadChildren: () => import('./pages/checklist/checklist.module').then(m => m.ChecklistPageModule)
+          }
+        ]
+      },
+      {
+        path: "tc-tour",
+        children: [
+          {
+            path: "",
+            loadChildren: () => import('./pages/tc-tour/tc-tour.module').then(m => m.TcTourPageModule)
+          }
+        ]
+      },
+      {
         path: "",
         redirectTo: "/tabs/home",
         pathMatch: "full"
