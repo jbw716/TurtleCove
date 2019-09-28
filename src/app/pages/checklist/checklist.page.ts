@@ -13,6 +13,9 @@ export class ChecklistPage implements OnInit {
 
   public anyExpanded = false;
 
+  public total = 0;
+  public found = 0;
+
   public species = [
     {
       class: 'Fish',
@@ -157,10 +160,25 @@ export class ChecklistPage implements OnInit {
   constructor(public popoverController: PopoverController, private storage: Storage, private alertController: AlertController) {}
 
   ngOnInit() {
-    this.restoreSpecies();
+    this.restore();
+    for (const obj of this.species) {
+      this.total += obj.species.length;
+    }
   }
 
-  restoreSpecies() {
+  checkChanged() {
+    this.found = 0;
+    for (const obj of this.species) {
+      for (const species of obj.species) {
+        if (species.checked) {
+          this.found++;
+        }
+      }
+    }
+    this.save();
+  }
+
+  restore() {
     this.storage.get('speciesArray').then(speciesArray => {
       if (speciesArray) {
         this.species = speciesArray.map(item => {
@@ -172,12 +190,18 @@ export class ChecklistPage implements OnInit {
         });
       }
     });
+    this.storage.get('speciesFound').then(speciesFound => {
+      if (speciesFound) {
+        this.found = speciesFound;
+      }
+    });
     console.log('Species restored.');
     console.log(this.species);
   }
 
-  saveSpecies() {
+  save() {
     this.storage.set('speciesArray', this.species);
+    this.storage.set('speciesFound', this.found);
     console.log('Species saved.');
     console.log(this.species);
   }
@@ -207,7 +231,7 @@ export class ChecklistPage implements OnInit {
         species.checked = false;
       }
     }
-    this.saveSpecies();
+    this.save();
   }
 
   toggleClass(speciesClass) {
