@@ -6,7 +6,13 @@
       <ion-title>Species Checklist</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div style="width: 100%; text-align: center;">{{ found }} / {{ total }} Species Found</div>
+  <div style="padding-top: 10px; margin: auto; width: 100%; display: flex; justify-content: center;">
+    <ion-chip color="primary" style="text-align: center;">
+      <ion-label>
+        {{ found }} / {{ total }} Species Found
+      </ion-label>
+    </ion-chip>
+  </div>
   <ion-item-group>
     <div style="display: flex; align-content: center; width: 100%;">
       <ion-button class="top-button" color="secondary" (click)="toggleExpandAll()">

@@ -168,7 +168,9 @@ export class ChecklistPage implements OnInit {
 
   checkChanged() {
     this.found = 0;
+    // record index of class
     for (const obj of this.species) {
+      // have array of "founds" where each int in the array is the number of found for each class
       for (const species of obj.species) {
         if (species.checked) {
           this.found++;
