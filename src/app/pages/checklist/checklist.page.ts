@@ -14,7 +14,8 @@ export class ChecklistPage implements OnInit {
   public anyExpanded = false;
 
   public total = 0;
-  public found = 0;
+  public found = [];
+  public totalFound = 0;
 
   public species = [
     {
@@ -161,22 +162,28 @@ export class ChecklistPage implements OnInit {
 
   ngOnInit() {
     this.restore();
-    for (const obj of this.species) {
-      this.total += obj.species.length;
+    // tslint:disable-next-line: forin
+    for (const i in this.species) {
+      this.found[i] = 0;
+      this.total += this.species[i].species.length;
     }
+    console.log(this.found);
   }
 
   checkChanged() {
-    this.found = 0;
+    this.found = [];
     // record index of class
-    for (const obj of this.species) {
+    // tslint:disable-next-line: forin
+    for (const i in this.species) {
+      this.found[i] = 0;
       // have array of "founds" where each int in the array is the number of found for each class
-      for (const species of obj.species) {
+      for (const species of this.species[i].species) {
         if (species.checked) {
-          this.found++;
+          this.found[i]++;
         }
       }
     }
+    this.totalFound = this.found.reduce(val => val);
     this.save();
   }
 
@@ -228,11 +235,14 @@ export class ChecklistPage implements OnInit {
   }
 
   resetAll() {
-    for (const speciesClass of this.species) {
-      for (const species of speciesClass.species) {
+    // tslint:disable-next-line: forin
+    for (const i in this.species) {
+      this.found[i] = 0;
+      for (const species of this.species[i].species) {
         species.checked = false;
       }
     }
+    this.totalFound = 0;
     this.save();
   }
 
