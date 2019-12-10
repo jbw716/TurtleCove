@@ -9,8 +9,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build-selu-dev": "ionic build --prod -- --base-href=/external/webapp_test/turtlecoveapp/www/"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
